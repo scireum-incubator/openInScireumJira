@@ -1,14 +1,14 @@
 var cmid;
 var cm_clickHandler = function(args) {
-  chrome.tabs.create({ url: 'http://jira.scireum.local/browse/' + args.selectionText });
+  chrome.tabs.create({ url: 'https://scireum.myjetbrains.com/youtrack/issue/' + args.selectionText });
 };
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.request === 'updateContextMenu') {
-        var type = msg.selection + ' in Jira oeffnen';
+        var type = msg.selection + ' in YouTrack oeffnen';
         if (msg.selection && msg.selection.length < 20) {
           var words = msg.selection.split("-", 2);
-          if(words.length === 2 && /^\d+$/.test(words[1]) && "OX-MIO-SCI-SE-BRAND-CRM-DH-KOP-OXC-OXTG-QM-SCAN-SCI-SE".includes(words[0])){
+          if(words.length === 2 && /^\d+$/.test(words[1]) && "OX-MIO-M-MAPK-MIOS-ORG-SE".includes(words[0])){
              // Add/update context menu entry
             var options = {
                 title: type,
